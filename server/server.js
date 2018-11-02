@@ -7,12 +7,17 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const axios = require('axios');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var authrequiredRouter = require('./routes/authrequired');
+
+
 
 // configure passport.js to use the local strategy
 passport.use(new LocalStrategy(
-  { usernameField: 'email' },
+  { usernameField: 'username' },
   (email, password, done) => {
-    axios.get(`http://localhost:5000/users?email=${email}`)
+    axios.get(`http://localhost:5000/users?username=${username}`)
     .then(res => {
       const user = res.data[0]
       if (!user) {
